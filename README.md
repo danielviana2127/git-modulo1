@@ -76,6 +76,17 @@ Análise de segurança
 
 Build e validação de artefatos
 
+## Testes Automatizados (Python + GitHub Actions)
+
+Este projeto inclui uma estrutura simples escrita em Python, com testes unitários utilizando o módulo `unittest`.
+
+### Rodar testes localmente
+
+Execute:
+
+```bash
+python -m unittest discover -s src
+
 5. Scripts Automatizados
 
 Na pasta scripts/ há um script inicial:

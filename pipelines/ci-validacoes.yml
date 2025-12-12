@@ -1,0 +1,42 @@
+name: CI - Validações Iniciais
+
+on:
+  push:
+    branches:
+      - main
+      - feature/**
+  pull_request:
+
+jobs:
+  validacoes:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v3
+
+      - name: Validar estrutura de diretórios
+        run: |
+          echo "Validando estrutura..."
+          test -d docs || (echo "Pasta docs não encontrada" && exit 1)
+          test -d pipelines || (echo "Pasta pipelines não encontrada" && exit 1)
+          test -d scripts || (echo "Pasta scripts não encontrada" && exit 1)
+          test -d src || (echo "Pasta src não encontrada" && exit 1)
+
+      - name: Verificar arquivos essenciais
+        run: |
+          echo "Verificando arquivos essenciais..."
+          test -f README.md || (echo "README.md não encontrado" && exit 1)
+          test -f docs/arquitetura.md || (echo "docs/arquitetura.md não encontrado" && exit 1)
+          test -f scripts/setup.sh || (echo "scripts/setup.sh não encontrado" && exit 1)
+
+      - name: Rodar setup inicial
+        run: |
+          chmod +x scripts/setup.sh
+          ./scripts/setup.sh
+
+      - name: Teste placeholder
+        run: |
+          echo "Executando testes placeholder..."
+          echo "OK"
+

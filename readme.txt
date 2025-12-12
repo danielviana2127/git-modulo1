@@ -37,6 +37,6 @@ git push -u origin main
 
 # Descrição do Projeto
 
-Este é um projeto simples usado no módulo 1 do curso de Git.
-Aqui estou aprendendo a criar branches, editar arquivos e fazer merges.
+Descrição do Projeto:
+Este repositório contém meu estudo de Git e versionamento.
 

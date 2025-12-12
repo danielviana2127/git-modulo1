@@ -35,3 +35,8 @@ git remote add origin https://github.com/SEU_USUARIO/git-modulo1.git
 git branch -M main
 git push -u origin main
 
+# Descrição do Projeto
+
+Este é um projeto simples usado no módulo 1 do curso de Git.
+Aqui estou aprendendo a criar branches, editar arquivos e fazer merges.
+

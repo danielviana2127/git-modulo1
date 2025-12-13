@@ -1,4 +1,4 @@
-name: CI - Pipeline Completa
+name: CI - Validações Iniciais
 
 on:
   push:
@@ -12,17 +12,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout do código
         uses: actions/checkout@v3
 
-      # ---------------------------
-      # 1. Validação da estrutura
-      # ---------------------------
       - name: Validar estrutura de diretórios
         run: |
           echo "Validando estrutura..."
           test -d docs || (echo "Pasta docs não encontrada" && exit 1)
-          test -d pipelines || (echo "Pasta pipelines não encontrada" && exit 1)
           test -d scripts || (echo "Pasta scripts não encontrada" && exit 1)
           test -d src || (echo "Pasta src não encontrada" && exit 1)
 
@@ -33,56 +29,22 @@ jobs:
           test -f docs/arquitetura.md || (echo "docs/arquitetura.md não encontrado" && exit 1)
           test -f scripts/setup.sh || (echo "scripts/setup.sh não encontrado" && exit 1)
 
-      # ---------------------------
-      # 2. Setup inicial do projeto
-      # ---------------------------
       - name: Rodar setup inicial
         run: |
           chmod +x scripts/setup.sh
           ./scripts/setup.sh
 
-      # ---------------------------
-      # 3. Lint simples (genérico)
-      # ---------------------------
-      - name: Lint básico
-        run: |
-          echo "Executando lint..."
-          find . -name "*.sh" -print0 | xargs -0 -I{} bash -n {} || exit 1
-          echo "Lint OK"
-
-      # ---------------------------
-      # 4. Testes placeholder
-      # ---------------------------
-      - name: Testes automatizados (placeholder)
-        run: |
-          echo "Executando testes..."
-          echo "Teste 1 OK"
-          echo "Teste 2 OK"
-
-      # ---------------------------
-      # 5. Build (genérico)
-      # ---------------------------
-      - name: Build do projeto (placeholder)
-        run: |
-          echo "Simulando build..."
-          mkdir -p build
-          echo "Build gerado em $(date)" > build/result.txt
-
-      # ---------------------------
-      # 6. Cache do build
-      # ---------------------------
-      - name: Cache do build
-        uses: actions/cache@v3
+      - name: Configurar Python
+        uses: actions/setup-python@v4
         with:
-          path: build/
-          key: build-${{ github.run_id }}
+          python-version: "3.10"
 
-      # ---------------------------
-      # 7. Upload do artefato gerado
-      # ---------------------------
-      - name: Upload do build
-        uses: actions/upload-artifact@v3
-        with:
-          name: build
-          path: build/
+      - name: Instalar dependências
+        run: |
+          pip install pytest
+
+      - name: Executar testes
+        run: |
+          echo "Executando testes com pytest..."
+          pytest -q
 

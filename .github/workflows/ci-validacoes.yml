@@ -48,3 +48,9 @@ jobs:
           echo "Executando testes com pytest..."
           pytest -q
 
+      - name: Build imagem Docker
+        run: docker build -t git-modulo1-ci .
+
+      - name: Rodar testes no container
+        run: docker run --rm git-modulo1-ci
+

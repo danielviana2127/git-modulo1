@@ -126,4 +126,3 @@ Expandir a pipeline de CI para cobrir todo o fluxo DevOps.
 
 Daniel Viana
 Estudante de DevOps e Automação.
-Este projeto faz parte do módulo de Git e Controle de Versão.

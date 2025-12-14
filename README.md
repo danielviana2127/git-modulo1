@@ -1,3 +1,4 @@
+feature/ci-validacoes-iniciais
 Git – Módulo 1
 
 Repositório criado como parte do estudo prático de Versionamento de Código, Git, GitHub Flow, Branches, Pull Requests, além da introdução a Integração Contínua (CI) usando GitHub Actions.
@@ -125,5 +126,3 @@ Expandir a pipeline de CI para cobrir todo o fluxo DevOps.
 
 Daniel Viana
 Estudante de DevOps e Automação.
-Este projeto faz parte do módulo de Git e Controle de Versão.
-feature/ci-validacoes-iniciais

@@ -1,4 +1,4 @@
-name: CI - Validações Iniciais
+name: CI - Multijob
 
 on:
   push:
@@ -8,49 +8,56 @@ on:
   pull_request:
 
 jobs:
-  validacoes:
+  lint:
+    name: Lint (Flake8)
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout do código
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: Validar estrutura de diretórios
-        run: |
-          echo "Validando estrutura..."
-          test -d docs || (echo "Pasta docs não encontrada" && exit 1)
-          test -d scripts || (echo "Pasta scripts não encontrada" && exit 1)
-          test -d src || (echo "Pasta src não encontrada" && exit 1)
-
-      - name: Verificar arquivos essenciais
-        run: |
-          echo "Verificando arquivos essenciais..."
-          test -f README.md || (echo "README.md não encontrado" && exit 1)
-          test -f docs/arquitetura.md || (echo "docs/arquitetura.md não encontrado" && exit 1)
-          test -f scripts/setup.sh || (echo "scripts/setup.sh não encontrado" && exit 1)
-
-      - name: Rodar setup inicial
-        run: |
-          chmod +x scripts/setup.sh
-          ./scripts/setup.sh
-
-      - name: Configurar Python
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.10"
+          python-version: '3.11'
 
       - name: Instalar dependências
         run: |
-          pip install pytest
+          python -m pip install --upgrade pip
+          pip install flake8
 
-      - name: Executar testes
+      - name: Rodar flake8
+        run: flake8 src
+
+  test:
+    name: Testes (unittest)
+    runs-on: ubuntu-latest
+    needs: lint
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependências
         run: |
-          echo "Executando testes com pytest..."
-          pytest -q
+          python -m pip install --upgrade pip
 
-      - name: Build imagem Docker
-        run: docker build -t git-modulo1-ci .
+      - name: Rodar testes
+        run: |
+          python -m unittest discover -s src
 
-      - name: Rodar testes no container
-        run: docker run --rm git-modulo1-ci
+  docker-build:
+    name: Build Docker
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build da imagem Docker
+        run: |
+          docker build -t git-modulo1-ci .
 

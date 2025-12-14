@@ -1,0 +1,18 @@
+echo "name: CI Exemplo
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Exemplo de etapa
+        run: echo 'Pipeline funcionando com sucesso!'" > pipelines/ci-exemplo.yml
+

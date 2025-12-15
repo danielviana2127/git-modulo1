@@ -1,3 +1,7 @@
+feature/teste-protecao
+teste
+linha nova
+
 feature/ci-validacoes-iniciais
 Git – Módulo 1
 
@@ -126,3 +130,4 @@ Expandir a pipeline de CI para cobrir todo o fluxo DevOps.
 
 Daniel Viana
 Estudante de DevOps e Automação.
+main

@@ -1,133 +1,145 @@
-feature/teste-protecao
-teste
-linha nova
+# Git – Módulo 1 | Fundamentos de Versionamento e CI
 
-feature/ci-validacoes-iniciais
-Git – Módulo 1
+Repositório criado como parte de um estudo prático sobre **Versionamento de Código com Git**, **GitHub Flow**, **Branches**, **Pull Requests** e **Integração Contínua (CI)** utilizando **GitHub Actions**.
 
-Repositório criado como parte do estudo prático de Versionamento de Código, Git, GitHub Flow, Branches, Pull Requests, além da introdução a Integração Contínua (CI) usando GitHub Actions.
+Este projeto tem caráter educacional e simula práticas reais adotadas em ambientes profissionais de desenvolvimento e DevOps.
 
-1. Objetivo do Projeto
+---
 
-Este repositório tem como finalidade demonstrar, na prática, a aplicação de conceitos fundamentais de Git e DevOps, incluindo:
+## 1. Objetivo do Projeto
 
-Estruturação de um projeto seguindo boas práticas.
+Demonstrar, na prática, a aplicação de conceitos fundamentais de Git e DevOps, incluindo:
 
-Criação e gerenciamento de branches.
+* Estruturação de um repositório seguindo boas práticas
+* Criação e gerenciamento de branches
+* Commits limpos, pequenos e semânticos
+* Pull Requests revisáveis e protegidos
+* Integração Contínua por meio de pipelines automatizados
 
-Commits limpos e semânticos.
+---
 
-Pull Requests revisáveis.
+## 2. Estrutura do Repositório
 
-Integração contínua utilizando pipelines simples de validação.
+```text
+.
+├── docs/                   # Documentação do projeto
+│   └── arquitetura.md      # Arquitetura lógica inicial
+├── .github/workflows/      # Pipelines de CI (GitHub Actions)
+│   └── ci-validacoes.yml   # Pipeline de validações (lint, tests, build)
+├── scripts/                # Scripts auxiliares
+│   └── setup.sh            # Script de inicialização
+├── src/                    # Código-fonte (exemplo em Python)
+├── README.md               # Documentação principal do projeto
+```
 
-Organização de documentação, scripts e pipelines.
+---
 
-2. Estrutura do Repositório
-/
-├── docs/               # Documentação do projeto
-│   └── arquitetura.md  # Arquitetura lógica inicial
-│
-├── pipelines/          # Pipelines CI
-│   └── ci-exemplo.yml  # Pipeline de validação
-│
-├── scripts/            # Scripts auxiliares
-│   └── setup.sh        # Script de inicialização
-│
-├── src/                # Código-fonte (ainda em construção)
-│
-└── readme.txt          # Resumo inicial da atividade
+## 3. Fluxo de Trabalho Utilizado (GitHub Flow)
 
-3. Fluxo de Trabalho Utilizado (GitHub Flow)
+O projeto segue o **GitHub Flow**, amplamente utilizado em equipes profissionais:
 
-Criar uma branch baseada na main
+1. Criar uma branch a partir da `main`
+2. Desenvolver a feature ou melhoria
+3. Commitar alterações de forma incremental
+4. Realizar push para o GitHub
+5. Abrir um Pull Request
+6. Aguardar validações automáticas e revisão
+7. Realizar o merge na `main`
 
-Desenvolver a feature
+Esse fluxo facilita colaboração, revisão de código e garantia de qualidade.
 
-Commitar alterações de forma incremental
+---
 
-Realizar push para o GitHub
+## 4. Integração Contínua (CI) – GitHub Actions
 
-Abrir Pull Request
+O repositório possui uma pipeline de **Integração Contínua** configurada em:
 
-Aguardar revisão e merge
+```
+.github/workflows/ci-validacoes.yml
+```
 
-Atualizar localmente a branch main
+### Etapas atuais do pipeline
 
-Esse fluxo é amplamente utilizado em equipes profissionais, pois facilita colaboração, revisão e qualidade do código.
+* Lint de código (flake8)
+* Execução de testes unitários
+* Build de imagem Docker (validação)
 
-4. Pipeline de CI – GitHub Actions
+### Características
 
-O projeto inclui um pipeline simples de Integração Contínua localizado em:
+* Execução automática em Pull Requests e na branch `main`
+* Ambiente Linux (Ubuntu)
+* Bloqueio de merge caso algum job falhe
 
-pipelines/ci-exemplo.yml
+### Evoluções planejadas
 
+* Análise de segurança
+* Cobertura de testes
+* Publicação de artefatos
 
-Atualmente, o pipeline executa:
+---
 
-Verificação da estrutura do repositório
+## 5. Testes Automatizados
 
-Execução de tarefas básicas de validação
+O projeto utiliza **Python** com testes unitários baseados em `unittest`.
 
-Uso de ambiente Ubuntu com GitHub Actions
-
-Futuramente, será expandido para incluir:
-
-Testes unitários
-
-Linting
-
-Análise de segurança
-
-Build e validação de artefatos
-
-## Testes Automatizados (Python + GitHub Actions)
-
-Este projeto inclui uma estrutura simples escrita em Python, com testes unitários utilizando o módulo `unittest`.
-
-### Rodar testes localmente
-
-Execute:
+### Executar testes localmente
 
 ```bash
 python -m unittest discover -s src
+```
 
-5. Scripts Automatizados
+---
 
-Na pasta scripts/ há um script inicial:
+## 6. Scripts Automatizados
 
-setup.sh
+Na pasta `scripts/` existe o script:
 
-Responsável por simular um fluxo inicial de automação, exibindo mensagens importantes e preparando o ambiente.
-O script serve como base para etapas futuras de automação DevOps.
+* `setup.sh`
 
-6. Como Executar o Projeto
-1. Clonar o repositório
+Esse script simula um fluxo inicial de automação, exibindo mensagens e preparando o ambiente. Ele serve como base para futuras automações DevOps.
+
+---
+
+## 7. Como Executar o Projeto
+
+### 1. Clonar o repositório
+
+```bash
 git clone https://github.com/danielviana2127/git-modulo1
+```
 
-2. Entrar no diretório
+### 2. Acessar o diretório
+
+```bash
 cd git-modulo1
+```
 
-3. Executar o script de setup
+### 3. Executar o script de setup
+
+```bash
 chmod +x scripts/setup.sh
 ./scripts/setup.sh
+```
 
-7. Próximos Passos Planejados
+---
 
-Adicionar testes unitários básicos.
+## 8. Próximos Passos Planejados
 
-Criar pipeline de lint.
+* Adicionar mais testes unitários
+* Evoluir regras de lint
+* Implementar Conventional Commits
+* Automatizar versionamento (SemVer)
+* Adicionar diagramas avançados em `docs/`
+* Expandir a pipeline de CI para um fluxo DevOps completo
 
-Implementar commits semânticos (Conventional Commits).
+---
 
-Criar script para automação de versionamento (semver).
+## 9. Autor
 
-Adicionar diagramas avançados em docs/.
+**Daniel Viana**
+Estudante de DevOps e Automação
 
-Expandir a pipeline de CI para cobrir todo o fluxo DevOps.
+---
 
-8. Autor
+> Este repositório é um projeto de estudo e evolução contínua, refletindo boas práticas utilizadas no mercado profissional.
 
-Daniel Viana
-Estudante de DevOps e Automação.
-main

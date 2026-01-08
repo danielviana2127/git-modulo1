@@ -1,18 +1,29 @@
-echo "name: CI Exemplo
+name: CI - Exemplo Didático
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+    paths:
+      - pipelines/ci-exemplo.yml
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
-  build:
+  exemplo:
+    name: Pipeline de Exemplo
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      
-      - name: Exemplo de etapa
-        run: echo 'Pipeline funcionando com sucesso!'" > pipelines/ci-exemplo.yml
 
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Executar etapa de demonstração
+        run: |
+          echo "Pipeline funcionando com sucesso!"
+          echo "Este workflow é apenas um exemplo didático."

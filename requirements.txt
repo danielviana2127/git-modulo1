@@ -1,2 +1,2 @@
-# Dependências do projeto
-
+# Dependências de runtime do projeto
+# Atualmente, o projeto utiliza apenas a biblioteca padrão do Python.

@@ -1,2 +1,8 @@
+# Lint
 flake8==7.0.0
 
+# Testes
+pytest==8.0.2
+
+# Qualidade / utilitários
+coverage==7.4.4

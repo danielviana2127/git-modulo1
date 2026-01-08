@@ -1,8 +1,23 @@
 [flake8]
+# Padrão de linha compatível com Black
 max-line-length = 88
-exclude = 
+
+# Diretórios e arquivos ignorados
+exclude =
     .git,
     __pycache__,
     .venv,
-    .github
+    venv,
+    .github,
+    pipelines,
+    scripts
 
+# Ignorar avisos específicos
+# E203 e W503 são incompatíveis com o Black
+ignore =
+    E203,
+    W503
+
+# Mostrar contagem e estatísticas no CI
+count = True
+statistics = True

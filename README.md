@@ -1,145 +1,133 @@
-# Git – Módulo 1 | Fundamentos de Versionamento e CI
+# Módulo 1 — Controle de Versão com Git
 
-Repositório criado como parte de um estudo prático sobre **Versionamento de Código com Git**, **GitHub Flow**, **Branches**, **Pull Requests** e **Integração Contínua (CI)** utilizando **GitHub Actions**.
+Este repositório faz parte do meu **plano de estudos em DevOps** e representa o **Módulo 1**, focado em **controle de versão com Git**, boas práticas e primeiros passos em automação.
 
-Este projeto tem caráter educacional e simula práticas reais adotadas em ambientes profissionais de desenvolvimento e DevOps.
-
----
-
-## 1. Objetivo do Projeto
-
-Demonstrar, na prática, a aplicação de conceitos fundamentais de Git e DevOps, incluindo:
-
-* Estruturação de um repositório seguindo boas práticas
-* Criação e gerenciamento de branches
-* Commits limpos, pequenos e semânticos
-* Pull Requests revisáveis e protegidos
-* Integração Contínua por meio de pipelines automatizados
+Embora o foco inicial seja Git, o projeto foi **evoluído propositalmente** para incluir conceitos reais de mercado, como CI, testes e Docker, tornando-o mais completo e profissional.
 
 ---
 
-## 2. Estrutura do Repositório
+## 🎯 Objetivo do Projeto
 
-```text
-.
-├── docs/                   # Documentação do projeto
-│   └── arquitetura.md      # Arquitetura lógica inicial
-├── .github/workflows/      # Pipelines de CI (GitHub Actions)
-│   └── ci-validacoes.yml   # Pipeline de validações (lint, tests, build)
-├── scripts/                # Scripts auxiliares
-│   └── setup.sh            # Script de inicialização
-├── src/                    # Código-fonte (exemplo em Python)
-├── README.md               # Documentação principal do projeto
+* Aprender e praticar os **fundamentos do Git**
+* Utilizar versionamento de forma organizada
+* Trabalhar com repositório remoto no GitHub
+* Aplicar boas práticas desde o início
+* Introduzir conceitos básicos de **DevOps**
+
+---
+
+## 📌 Conceitos Abordados
+
+### Git e Versionamento
+
+* O que é Git e por que usar controle de versão
+* Repositório local vs repositório remoto
+* Commits e histórico de alterações
+* Estados dos arquivos:
+
+  * Untracked
+  * Modified
+  * Staged
+  * Committed
+* Branch principal (`main`)
+* Fluxo básico de trabalho com Git
+
+### DevOps (Introdução)
+
+* Integração Contínua (CI)
+* Qualidade de código (lint)
+* Testes automatizados
+* Containerização com Docker
+
+---
+
+## 🧱 Estrutura do Projeto
+
+```
+git-modulo1/
+├── .github/workflows/        # Pipelines de CI (GitHub Actions)
+├── docs/                     # Documentação técnica
+│   └── arquitetura.md        # Arquitetura do projeto
+├── pipelines/                # Exemplos educacionais de pipelines
+├── scripts/                  # Scripts auxiliares
+├── src/                      # Código-fonte e testes
+├── Dockerfile                # Definição da imagem Docker
+├── .dockerignore             # Exclusões do build
+├── .flake8                   # Configuração do linter
+├── requirements.txt          # Dependências de runtime
+├── requirements-dev.txt      # Dependências de desenvolvimento
+└── README.md                 # Documentação principal
 ```
 
 ---
 
-## 3. Fluxo de Trabalho Utilizado (GitHub Flow)
+## ⚙️ Integração Contínua (CI)
 
-O projeto segue o **GitHub Flow**, amplamente utilizado em equipes profissionais:
+O projeto utiliza **GitHub Actions** com um pipeline que executa automaticamente:
 
-1. Criar uma branch a partir da `main`
-2. Desenvolver a feature ou melhoria
-3. Commitar alterações de forma incremental
-4. Realizar push para o GitHub
-5. Abrir um Pull Request
-6. Aguardar validações automáticas e revisão
-7. Realizar o merge na `main`
+1. **Lint** do código com Flake8
+2. **Testes unitários** com unittest
+3. **Build da imagem Docker** (somente se as etapas anteriores passarem)
 
-Esse fluxo facilita colaboração, revisão de código e garantia de qualidade.
+Isso garante qualidade e consistência a cada `push` ou `pull request`.
 
 ---
 
-## 4. Integração Contínua (CI) – GitHub Actions
+## 🐳 Docker
 
-O repositório possui uma pipeline de **Integração Contínua** configurada em:
+O projeto possui um `Dockerfile` simples e funcional, utilizado para:
 
-```
-.github/workflows/ci-validacoes.yml
-```
+* Isolar o ambiente de execução
+* Executar testes automaticamente
+* Garantir reprodutibilidade
 
-### Etapas atuais do pipeline
-
-* Lint de código (flake8)
-* Execução de testes unitários
-* Build de imagem Docker (validação)
-
-### Características
-
-* Execução automática em Pull Requests e na branch `main`
-* Ambiente Linux (Ubuntu)
-* Bloqueio de merge caso algum job falhe
-
-### Evoluções planejadas
-
-* Análise de segurança
-* Cobertura de testes
-* Publicação de artefatos
-
----
-
-## 5. Testes Automatizados
-
-O projeto utiliza **Python** com testes unitários baseados em `unittest`.
-
-### Executar testes localmente
+### Build da imagem
 
 ```bash
-python -m unittest discover -s src
+docker build -t git-modulo1 .
 ```
 
----
-
-## 6. Scripts Automatizados
-
-Na pasta `scripts/` existe o script:
-
-* `setup.sh`
-
-Esse script simula um fluxo inicial de automação, exibindo mensagens e preparando o ambiente. Ele serve como base para futuras automações DevOps.
-
----
-
-## 7. Como Executar o Projeto
-
-### 1. Clonar o repositório
+### Execução
 
 ```bash
-git clone https://github.com/danielviana2127/git-modulo1
+docker run git-modulo1
 ```
 
-### 2. Acessar o diretório
+---
+
+## 🛠️ Comandos Git Utilizados
 
 ```bash
-cd git-modulo1
+git init
+git status
+git add .
+git commit -m "Meu primeiro commit"
+git remote add origin https://github.com/SEU_USUARIO/git-modulo1.git
+git branch -M main
+git push -u origin main
 ```
 
-### 3. Executar o script de setup
+---
 
-```bash
-chmod +x scripts/setup.sh
-./scripts/setup.sh
-```
+## 📚 Documentação
+
+* 📄 [Arquitetura do Projeto](docs/arquitetura.md)
 
 ---
 
-## 8. Próximos Passos Planejados
+## 🚀 Próximos Passos
 
-* Adicionar mais testes unitários
-* Evoluir regras de lint
-* Implementar Conventional Commits
-* Automatizar versionamento (SemVer)
-* Adicionar diagramas avançados em `docs/`
-* Expandir a pipeline de CI para um fluxo DevOps completo
+* Evoluir o pipeline de CI
+* Adicionar cobertura de testes
+* Publicar imagem Docker
+* Avançar para os próximos módulos do plano DevOps
 
 ---
 
-## 9. Autor
+## 📌 Observação Final
 
-**Daniel Viana**
-Estudante de DevOps e Automação
+Este projeto tem **finalidade educacional**, mas segue padrões reais de mercado, sendo ideal para:
 
----
-
-> Este repositório é um projeto de estudo e evolução contínua, refletindo boas práticas utilizadas no mercado profissional.
-
+* Portfólio
+* Estudo contínuo
+* Demonstração de evolução técnica
